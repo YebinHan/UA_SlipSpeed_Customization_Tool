@@ -6,7 +6,7 @@ import {
   AccumulativeShadows,
   RandomizedLight,
   Decal,
-  useTexture
+  useTexture,
 } from "@react-three/drei";
 import { useRef } from "react";
 import { easing } from "maath";
@@ -36,18 +36,22 @@ export const App = ({ position = [10, 1, -2.5], fov = 27 }) => (
 function Shirt(props) {
   const snap = useSnapshot(state);
 
+  // Load texture
   const texture = useTexture(`/${snap.selectedDecal}.png`);
 
+  // Load materials from shoe
   const { nodes, materials } = useGLTF("/Shoe_test.glb");
 
+  // Define list of shoe parts to adjust when different color is selected
   const list_of_mat = [
     "Material.118",
     "Material.117",
     "Material.120",
     "Material.119",
-    "Material.027"
+    "Material.027",
   ];
 
+  // Loop over list of materials/shoe parts to update with selected color
   for (let index = 0; index < list_of_mat.length; index++) {
     const i = list_of_mat[index];
 

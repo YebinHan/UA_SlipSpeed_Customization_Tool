@@ -1,14 +1,12 @@
-import { Logo } from "@pmndrs/branding";
 import {
   AiOutlineHighlight,
-  AiOutlineShopping,
   AiFillCamera,
-  AiOutlineArrowLeft
+  AiOutlineArrowLeft,
 } from "react-icons/ai";
 
 import { useSnapshot } from "valtio";
 import { state } from "./store";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 
 export default function Overlay() {
   const snap = useSnapshot(state);
@@ -18,10 +16,8 @@ export default function Overlay() {
   const config = {
     initial: { x: -100, opacity: 0, transition: { ...transition, delay: 0.5 } },
     animate: { x: 0, opacity: 1, transition: { ...transition, delay: 0 } },
-    exit: { x: -100, opacity: 0, transition: { ...transition, delay: 0 } }
+    exit: { x: -100, opacity: 0, transition: { ...transition, delay: 0 } },
   };
-
-  const uaLogo = ["UALogo"];
 
   return (
     <div className="container">
@@ -29,9 +25,7 @@ export default function Overlay() {
         initial={{ opacity: 0, y: -120 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", duration: 1.8, delay: 1 }}
-      >
-        {/* <AiOutlineShopping size="2em" /> */}
-      </motion.header>
+      ></motion.header>
       <AnimatePresence>
         {snap.intro ? (
           <Intro key="main" config={config} />
